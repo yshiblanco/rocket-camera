@@ -7,8 +7,8 @@
 #include <sys/un.h>
 
 #define SOCKET_PATH "/tmp/pi_socket"
-#define SOCKET_TYPE "SOCK_STREAM"
-#define DOMAIN      "AF_UNIX"
+#define SOCKET_TYPE SOCK_STREAM
+#define DOMAIN      AF_UNIX
 
 int main(void) {
     int serverSocket;
