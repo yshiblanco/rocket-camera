@@ -1,4 +1,6 @@
 #include "client_socket.h"
+#include <stdio.h>
+#include <string.h>
 
 int main(void) {
     InitializeSocket();

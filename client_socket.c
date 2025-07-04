@@ -20,11 +20,11 @@ void InitializeSocket(void) {
     client_socket = socket(DOMAIN, SOCKET_TYPE, 0);
 
     //Assigning an address to the socket
-    server_addr.sun_family = DOMAIN;
-    strcpy(server_addr.sun_path, SOCKET_PATH);
+    client_addr.sun_family = DOMAIN;
+    strcpy(client_addr.sun_path, SOCKET_PATH);
 
     //Connecting to the server socket
-    connect(client_socket, (struct sockaddr *) &server_addr, sizeof(server_addr));
+    connect(client_socket, (struct sockaddr *) &client_addr, sizeof(client_addr));
 
 }
 
