@@ -90,11 +90,6 @@ class Camera:
                 break
 
             self.out.write(frame)
-            cv2.imshow(filename, frame)
-
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                print("Recording stopped by user.")
-                break
 
         self.stop_recording()
     
