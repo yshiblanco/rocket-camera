@@ -35,7 +35,7 @@ class Camera:
         Returns:
             filename (str): Name of the video capture file
         """
-        filename = f"video{self.name}_{self.fileIndex}.mp4"
+        filename = f"{self.name}_{self.fileIndex}.mp4"
         self.fileIndex += 1
         return filename
 
@@ -60,7 +60,7 @@ class Camera:
             VideoWriter: OpenCV object that writes the captured frames to a 
                          video file.
         """
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        fourcc = cv2.VideoWriter_fourcc(*'XVID')
         self.out = cv2.VideoWriter(filename, fourcc, self.fps, (self.width, self.height))
         return self.out
 
