@@ -3,7 +3,7 @@ import time
 from threading import Thread
 
 class Camera:
-    def __init__(self, name:str = "output", width:int = 1280, height:int = 720, fps:int = 20.0):
+    def __init__(self, name:str = "output", width:int = 640, height:int = 480, fps:int = 20.0):
         """Constructor for the camera class
 
         Args:
@@ -60,7 +60,7 @@ class Camera:
             VideoWriter: OpenCV object that writes the captured frames to a 
                          video file.
         """
-        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         self.out = cv2.VideoWriter(filename, fourcc, self.fps, (self.width, self.height))
         return self.out
 
