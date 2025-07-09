@@ -79,7 +79,6 @@ class Camera:
 
         self._get_video_writer(filename)
 
-        print("Recording... Press 'q' to stop.")
         self.recordStatus = True
 
         start_time = time.time()
@@ -90,6 +89,7 @@ class Camera:
                 break
 
             self.out.write(frame)
+            cv2.imshow(filename, frame)
 
         self.stop_recording()
     
