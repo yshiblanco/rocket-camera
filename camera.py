@@ -83,7 +83,7 @@ class Camera:
 
         print("Recording for 5 seconds...")
         start_time = time.time()
-        while time.time() - start_time < 5:  # Record for 5 seconds
+        while time.time() - start_time < 15:  # Record for 5 seconds
             ret, frame = self.cap.read()
             if not ret:
                 print("Failed to grab frame.")
