@@ -81,6 +81,7 @@ class Camera:
 
         self.recordStatus = True
 
+        print("Recording for 5 seconds...")
         start_time = time.time()
         while time.time() - start_time < 5:  # Record for 5 seconds
             ret, frame = self.cap.read()
@@ -113,6 +114,9 @@ class Camera:
         if self.out:
             self.out.release()
         cv2.destroyAllWindows()
+
+        print("Recording stopped...")
+        time.sleep(1)
 
     def __eq__(self, other) -> bool:
         """Checks to see if Camera objects have the same name.
@@ -166,11 +170,7 @@ if __name__ == "__main__":
     print("Initializing hardware...")
     cam = Camera()
 
-    print("Starting recording")
-    cam.create_record_thread()
-    time.sleep(5)
-    print("Recording stopped...")
-    time.sleep(1)
+    cam.record(cam._set_file())
 
 
 
