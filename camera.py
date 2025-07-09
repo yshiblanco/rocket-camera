@@ -81,9 +81,9 @@ class Camera:
 
         self.recordStatus = True
 
-        print("Recording for 5 seconds...")
+        print("Recording for 15 seconds...")
         start_time = time.time()
-        while time.time() - start_time < 5:  # Record for 5 seconds
+        while time.time() - start_time < 15:  # Record for 15 seconds
             ret, frame = self.cap.read()
             if not ret:
                 print("Failed to grab frame.")
@@ -167,7 +167,7 @@ def getUserInput():
 
 if __name__ == "__main__":
     print("Initializing hardware...")
-    cam = Camera()
+    cam = Camera("test")
 
     cam.record(cam._set_file())
 
