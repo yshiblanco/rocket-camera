@@ -1,8 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <sys/un.h>
 
 #define SOCKET_PATH "/tmp/pi_socket"
-#define SOCKET_TYPE "SOCK_STREAM"
-#define DOMAIN      "AF_UNIX"
 #define SOCKET_TYPE SOCK_STREAM
 #define DOMAIN      AF_UNIX
 
