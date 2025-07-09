@@ -1,5 +1,6 @@
 import cv2
 import time
+from threading import Thread
 
 class Camera:
     def __init__(self, name:str = "output", width:int = 1280, height:int = 720, fps:int = 20.0):
@@ -25,6 +26,8 @@ class Camera:
         self.out = None
         self.fileIndex = 0
         self.recordStatus = False
+
+        self._initialize_camera()
 
     def _set_file(self) -> str:
         """Sets file name; increases every time function is called (i.e. a new video is recorded)
@@ -69,7 +72,7 @@ class Camera:
         """
 
         #TODO: figure out how to open camera faster
-        self._initialize_camera()
+        # self._initialize_camera()
         if not self.cap or not self.cap.isOpened():
             print("Error: Could not open webcam.")
             return
@@ -79,7 +82,8 @@ class Camera:
         print("Recording... Press 'q' to stop.")
         self.recordStatus = True
 
-        while True:
+        start_time = time.time()
+        while time.time() - start_time < 5:  # Record for 5 seconds
             ret, frame = self.cap.read()
             if not ret:
                 print("Failed to grab frame.")
@@ -89,7 +93,7 @@ class Camera:
             cv2.imshow(filename, frame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
-                print("Recording stopped.")
+                print("Recording stopped by user.")
                 break
 
         self.stop_recording()
@@ -142,26 +146,36 @@ def getUserInput():
         elif userInput == 'camera':
             recording = not recording
 
+# if __name__ == "__main__":
+#     cam = Camera()
+
+#     inputTask = Thread(
+#         target = getUserInput
+#         )
+#     inputTask.start()
+
+#     while not quitApp:
+#         if recording and not cam.recordStatus:
+#             cam.create_record_thread()
+#         elif not recording and cam.recordStatus:
+#             cam.stop_recording()
+#         time.sleep(0.1)
+
+#     if cam.recordStatus:
+#         cam.stop_recording()
+
+#     inputTask.join()
+#     print("Program terminated.")
+
 if __name__ == "__main__":
+    print("Initializing hardware...")
     cam = Camera()
 
-    inputTask = Thread(
-        target = getUserInput
-        )
-    inputTask.start()
-
-    while not quitApp:
-        if recording and not cam.recordStatus:
-            cam.create_record_thread()
-        elif not recording and cam.recordStatus:
-            cam.stop_recording()
-        time.sleep(0.1)
-
-    if cam.recordStatus:
-        cam.stop_recording()
-
-    inputTask.join()
-    print("Program terminated.")
+    print("Starting recording")
+    cam.create_record_thread()
+    time.sleep(5)
+    print("Recording stopped...")
+    time.sleep(1)
 
 
 
